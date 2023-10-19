@@ -1,0 +1,19 @@
+Python: Version 3.11
+
+NumPy: For numerical computations, handling arrays, and basic mathematical operations.
+Install with: pip install numpy
+
+
+Pandas: For data manipulation and analysis, including data reading, cleaning, and transformation.
+Install with: pip install pandas
+
+
+Matplotlib: For creating static, interactive, and animated visualizations in Python.
+Install with: pip install matplotlib
+
+
+Seaborn: A high-level interface to Matplotlib for creating informative and attractive statistical graphics.
+Install with: pip install seaborn
+
+Statsmodels: For estimating and interpreting models for statistical analysis.
+Install with: pip install statsmodels

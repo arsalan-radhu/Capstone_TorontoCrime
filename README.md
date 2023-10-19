@@ -9,51 +9,61 @@ Crime is a critical concern for any city, and Toronto is no exception. Understan
 ## Those Affected
 The impact of crime extends to everyone in a community. The insights generated from this project will be beneficial for various stakeholders:
 
-<b>Policymakers</b>: To allocate resources, improve law enforcement, and implement community programs effectively.
-<b>Law Enforcement</b>: To strategically deploy resources and personnel to areas with high crime rates.
-<b>Residents</b>: To be aware of crime trends in their neighborhoods and take precautionary measures.
-<b>Businesses</b>: To make informed decisions about where to establish or expand their operations.
-<b><i>Proposed Data Science Solution</i></b>
+<b>Policymakers</b>: To allocate resources, improve law enforcement, and implement community programs effectively.</br>
+<b>Law Enforcement</b>: To strategically deploy resources and personnel to areas with high crime rates.</br>
+<b>Residents</b>: To be aware of crime trends in their neighborhoods and take precautionary measures.</br>
+<b>Businesses</b>: To make informed decisions about where to establish or expand their operations.</br>
+<b><i>Proposed Data Science Solution</i></b></br>
 Our approach to solving this problem is based on data science techniques. We will perform data analysis, visualization, and predictive modeling to gain insights into the following:
-
-    -Identifying neighborhoods with the highest and lowest crime rates.
-    -Analyzing temporal trends in crime data over the years.
-    -Predicting future crime rates in different areas.
-    -Evaluating the effectiveness of various law enforcement initiatives.
-    -This information will be used to suggest evidence-based strategies for reducing crime in high-risk areas.
+<li>
+    <ul>Identifying neighborhoods with the highest and lowest crime rates.</ul>
+    <ul>Analyzing temporal trends in crime data over the years.</ul>
+    <ul>Predicting future crime rates in different areas.</ul>
+    <ul>Evaluating the effectiveness of various law enforcement initiatives.</ul>
+    <ul>This information will be used to suggest evidence-based strategies for reducing crime in high-risk areas.</ul>
+</li>
 
 ## Impact of the Solution
 The impact of this solution can be summarized as follows:
 
-Improved Safety: By identifying high-crime areas, law enforcement can focus their efforts and resources more effectively, leading to reduced crime rates.
-Informed Decision-Making: Policymakers and community leaders can make data-driven decisions to implement preventive measures and allocate resources efficiently.
-Aware Communities: Residents and businesses in Toronto will have a better understanding of the crime landscape in their areas and can take proactive measures to enhance their safety.
-Dataset
-For this project, we will utilize the "Toronto Crime Data" dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date. The dataset is publicly available and can be accessed through [insert data source link]. It contains the following key attributes:
+<b>Improved Safety</b>: By identifying high-crime areas, law enforcement can focus their efforts and resources more effectively, leading to reduced crime rates.</br>
+<b>Informed Decision-Making</b>: Policymakers and community leaders can make data-driven decisions to implement preventive measures and allocate resources efficiently</br>.
+<b>Aware Communities</b>: Residents and businesses in Toronto will have a better understanding of the crime landscape in their areas and can take proactive measures to enhance their safety.</br>
 
-Crime Type: The type of crime committed (e.g., theft, assault, vandalism).
-Location: The geographical location where the crime occurred (neighborhood, coordinates).
-Date: The date and time of the crime incident.
-Other Relevant Data: Additional attributes such as demographics, police presence, or weather data may be included to enhance the analysis.
+## Dataset
+For this project, we will utilize the "Toronto Crime Data" dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date. The dataset is publicly available and can be accessed through https://data.torontopolice.on.ca/pages/asr-open-data. Each crime was a different data sets which ahve been combined into one data set. It contains the following key attributes:
+![App Screenshot](./References/Screenshot%202023-10-11%20153422.png) 
+
+
 ## Project Structure
 This repository is organized as follows:
 
-Data: Contains the dataset used for analysis (or a link to the source).
-Notebooks: Jupyter notebooks documenting the data analysis and modeling process.
-Scripts: Any Python scripts necessary for data preprocessing, feature engineering, or model training.
-Reports: Project reports, findings, and visualizations.
-Results: Any relevant output files or visualizations.
-Documentation: Additional project documentation and resources.
-Requirements: The necessary packages and environment setup for running the code.
+<b>Data</b>: Contains the dataset used for analysis (or a link to the source).</br>
+<b>Notebooks</b>: Jupyter notebooks documenting the data analysis and modeling process.</br>
+<b>src</b>:.</br>
+<b>Reports</b>: Project reports, findings, and visualizations.</br>
+<b>Streamlit</b>: </br>
+<b>References</b>: Additional project documentation and resources.</br>
+<b>Models</b>: All the models made.</br>
+<b>Docs</b>: Additional documents required for the project.</br>
 
 ## Installation and Usage
 To use this project, follow these steps:
+<li>
+<ol>
 
-Clone the repository: git clone https://github.com/your-username/toronto-crime-analysis.git
-Set up the Python environment with the required packages. You can find the list in the requirements.txt file.
-Run the Jupyter notebooks or Python scripts in the "Notebooks" and "Scripts" directories, respectively.
+Clone the repository: 
+~~~bash  
+  git clone https://github.com/arsalan-radhu/Capstone_TorontoCrime.git 
+~~~
+
+</ol>
+<ol>Set up the Python environment with the required packages. You can find the list in the requirements.txt file in the Docs directory.</ol>
+<ol>Run the Jupyter notebooks  "Notebooks" directory.</ol>
+
 ## Contributors
 Arsalan Arif Radhu
 
+<b>
 Feel free to contribute, open issues, or make suggestions to improve the analysis and its impact. Together, we can make Toronto safer and more secure for everyone.
-  
+</b>
