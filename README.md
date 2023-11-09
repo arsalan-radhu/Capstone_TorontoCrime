@@ -41,7 +41,7 @@ The impact of this solution can be summarized as follows:
 <b>Aware Communities</b>: Residents and businesses in Toronto will have a better understanding of the crime landscape in their areas and can take proactive measures to enhance their safety.</br>
 
 ## Dataset
-For this project, we will utilize the "Toronto Crime Data" dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date. The dataset is publicly available and can be accessed through https://data.torontopolice.on.ca/pages/asr-open-data. Each crime was a different data sets which ahve been combined into one data set. It contains the following key attributes:
+For this project, we will utilize the "Toronto Crime Data" dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date. The dataset is publicly available and can be accessed through https://data.torontopolice.on.ca/pages/asr-open-data. Each crime was a different data sets which have been combined into one data set. It contains the following key attributes:
 ![App Screenshot](./References/Screenshot%202023-10-11%20153422.png) 
 
 
