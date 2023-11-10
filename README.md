@@ -42,49 +42,49 @@ The impact of this solution can be summarized as follows:
 <b>Aware Communities</b>: Residents and businesses in Toronto will have a better understanding of the crime landscape in their areas and can take proactive measures to enhance their safety.</br>
 
 ## Dataset
-For this project, we will utilize the "Toronto Crime Data" dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date. The dataset is publicly available and can be accessed through https://data.torontopolice.on.ca/pages/asr-open-data. Each crime was a different data sets which have been combined into one data set. It contains the following key attributes:
+For this project, we will utilize the "Toronto Crime Data" dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date. The dataset is publicly available and can be accessed through https://data.torontopolice.on.ca/pages/asr-open-data. Each crime was a different data set which have been combined into one data set. It contains the following key attributes:
 ![App Screenshot](./References/Screenshot%202023-10-11%20153422.png) <br />
-The working data set can be downloaded using the following link: <a href= "https://drive.google.com/file/d/1srE3AW51bbNYv88LudycGaU2dUwTHNKB/view?usp=sharing" target="_blank"> Preprossed Data</a>
+The working data set can be downloaded using the following link: <a href= "https://drive.google.com/file/d/1srE3AW51bbNYv88LudycGaU2dUwTHNKB/view?usp=sharing" target="_blank"> Preprocessed Data</a>
 
 ## Work Flow
 #### Done:
 <ul>
     <li>
-        The data has been collected, cleaned and advanced exploratory analysis has been done.
+        The data has been collected, and cleaned, and advanced exploratory analysis has been done.
     </li>
     <li>
-        The data was collected from Toronto Police's Opoen Data source. The data was collected divided into 9 files. Each file was concatenated and then cleaned.
+        The data was collected from the Toronto Police's Open Data source. The data was collected and divided into 9 files. Each file was concatenated and then cleaned.
     </li>
     <li>
-        After cleaning some basic EDA was done using Tableau and some insights were gained like the general trend of crimes and their relationship with time of day, year, neighbourhood and location type.
+        After cleaning some basic EDA was done using Tableau and some insights were gained like the general trend of crimes and their relationship with time of day, year, neighborhood and location type.
     </li>
     <li>
-        Some more in depth Analysis was done using python and the relationship between crime and Police division was explored. The data was then pre-processed using one-hot encoding and dropping non-usable columns.         The data was divided into test and train sets and `CRIME_TYPE` chosen as the target variable after being embedded.
+        Some more in-depth Analysis was done using Python and the relationship between crime and Police division was explored. The data was then pre-processed using one-hot encoding and dropping non-usable columns.         The data was divided into test and train sets and `CRIME_TYPE` was chosen as the target variable after being embedded.
     </li>
     <li>
         After the pre-processing, a basic Logistic Regression model was trained and tested on the data which after 6500 iterations gave us a score of 85% on test data.
     </li>
     <li>
-        To raise the accuracy and reduce runtime, PCA and Scaling was performed but it dropped the accuracy to 65%.
+        To raise the accuracy and reduce runtime, PCA and Scaling were performed but it dropped the accuracy to 65%.
     </li>
 </ul>
 
 #### To-do: 
 <ul>
     <li>
-        The next steps would be to increase the accuracy of our predictions.
+        The next step would be to increase the accuracy of our predictions.
     </li>
     <li>
-        Create and fit KNN Model to see if it fits better to my data set.
+        Create and fit the KNN Model to see if it fits better to my data set.
     </li>
     <li>
-        Researh more about what other models might fit my data set.
+        Research more about what other models might fit my data set.
     </li>
 </ul>
 
 ## Project Structure
 <b>Data</b>: Contains the dataset used for analysis (or a link to the source).</br>
-<b>Notebooks</b>: Jupyter notebooks documenting the data analysis and modeling process.</br>
+<b>Notebooks</b>: Jupyter notebooks document the data analysis and modeling process.</br>
 <b>Reports</b>: Project reports, findings, and visualizations.</br>
 <b>References</b>: Additional project documentation and resources.</br>
 <b>Models</b>: All the models made.</br>
@@ -103,7 +103,7 @@ Clone the repository:
 </li>
 <li>Set up the Python environment with the required packages. You can find the list in the requirements.txt file in the Docs directory.</li>
 <li>Download the dataset from the link provided <a href= "https://drive.google.com/file/d/1srE3AW51bbNYv88LudycGaU2dUwTHNKB/view?usp=sharing" target="_blank">here</a>.</li>
-<li>Run the Jupyter notebooks "Notebooks" directory.</li>
+<li>Run the Jupyter Notebooks "Notebooks" directory.</li>
 </ul>
 
 ## Contributors
