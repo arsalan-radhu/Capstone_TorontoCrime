@@ -17,3 +17,13 @@ Install with: pip install seaborn
 
 Statsmodels: For estimating and interpreting models for statistical analysis.
 Install with: pip install statsmodels
+
+LabelEncoder: Used for encoding categorical variables into numerical format, which is often necessary for machine learning models that require numerical input.
+
+train_test_split: A function to split a dataset into training and testing sets, which is crucial for evaluating the performance of machine learning models.
+
+LogisticRegression: Implements logistic regression, a commonly used algorithm for binary and multiclass classification tasks.
+
+PCA (Principal Component Analysis): A technique for dimensionality reduction, often used to reduce the number of features in a dataset while retaining important information.
+
+StandardScaler: Standardizes features by removing the mean and scaling to unit variance. It's useful for algorithms sensitive to the scale of input features, such as logistic regression.
