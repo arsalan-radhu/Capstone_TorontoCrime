@@ -10,7 +10,7 @@ st.set_page_config(page_title="Awesome Streamlit Page", page_icon=":rocket:")
 
 # Add a catchy title
 st.title("Welcome to My Cool Streamlit Page!")
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 # Introduction
 st.markdown("""
 Explore the exciting features and visualizations below. Dive into the data-driven world with Streamlit!
