@@ -26,9 +26,9 @@ st.sidebar.info(f"Hello, {user_name}! 👋")
 
 ### A. define function to load data
 @st.cache_data # <- add decorators after tried running the load multiple times
-def load_data(path, num_rows):
+def load_data(path):
 
-    df = pd.read_csv(path, nrows=num_rows)
+    df = pd.read_csv(path)
 
     # Streamlit will only recognize 'latitude' or 'lat', 'longitude' or 'lon', as coordinates
 
