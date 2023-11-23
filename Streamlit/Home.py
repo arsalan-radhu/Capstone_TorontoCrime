@@ -37,7 +37,7 @@ def load_data(path):
     return df
 
 ### B. Load first 50K rows
-df = load_data("streamlit.csv")
+df = load_data("./streamlit.csv")
 
 ### C. Display the dataframe in the app
 st.dataframe(df)
