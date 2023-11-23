@@ -21,17 +21,34 @@ st.sidebar.header("Customize Your Experience")
 user_name = st.sidebar.text_input("Enter Your Name:", "Streamlit Enthusiast")
 st.sidebar.info(f"Hello, {user_name}! 👋")
 
-# Load sample data
-@st.cache
-def load_data():
-    data = pd.DataFrame(np.random.randn(100, 3), columns=['A', 'B', 'C'])
-    return data
+#######################################################################################################################################
+### DATA LOADING
 
-df = load_data()
+### A. define function to load data
+@st.cache_data # <- add decorators after tried running the load multiple times
+def load_data(path, num_rows):
 
-# Show a random sample of the data
-st.subheader("Random Sample of Data")
-st.dataframe(df.sample(5))
+    df = pd.read_csv(path, nrows=num_rows)
+
+    # Streamlit will only recognize 'latitude' or 'lat', 'longitude' or 'lon', as coordinates
+
+    df = df.rename(columns={'LAT_WGS84': 'lat', 'LONG_WGS84': 'lon'}) 
+     
+    return df
+
+### B. Load first 50K rows
+df = load_data("../data/streamlit.csv")
+
+### C. Display the dataframe in the app
+st.dataframe(df)
+
+
+#######################################################################################################################################
+### STATION MAP
+
+st.subheader('Location Map - NYC bike stations')      
+
+st.map(df) 
 
 # Create a simple plot
 st.subheader("Interactive Plot")
