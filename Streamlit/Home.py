@@ -9,7 +9,7 @@ import seaborn as sns
 st.set_page_config(page_title="Awesome Streamlit Page", page_icon=":rocket:")
 
 # Add a catchy title
-st.title("Welcome to My Cool Streamlit Page!")
+st.title("Toronto Crime Type Predictor")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 # Introduction
 st.markdown("""
@@ -17,9 +17,23 @@ Explore the exciting features and visualizations below. Dive into the data-drive
 """)
 
 # Sidebar for customization
-st.sidebar.header("Customize Your Experience")
-user_name = st.sidebar.text_input("Enter Your Name:", "Streamlit Enthusiast")
-st.sidebar.info(f"Hello, {user_name}! 👋")
+page = st.sidebar.selectbox("Select Page", ["Home", "EDA", "Models"])
+
+# Conditional rendering based on the selected page
+if page == "Home":
+    st.sidebar.header("Customize Your Experience")
+    user_name = st.sidebar.text_input("Enter Your Name:", "Streamlit Enthusiast")
+    st.sidebar.info(f"Hello, {user_name}! 👋")
+    st.write("Welcome to the Crime Analysis App. Use the sidebar to navigate.")
+elif page == "EDA":
+    st.sidebar.header("Exploratory Data Analysis (EDA)")
+    # Add EDA content here
+    st.write("This is the EDA page. Add your EDA content.")
+elif page == "Models":
+    st.sidebar.header("Models")
+    # Add Models content here
+    st.write("This is the Models page. Add your models or analysis content.")
+
 
 #######################################################################################################################################
 ### DATA LOADING
@@ -38,7 +52,11 @@ def load_data(path):
 
 ### B. Load first 50K rows
 df = load_data("./streamlit.csv")
+df.drop('Unnamed: 0', axis=1, inplace= True)
 
+
+df2 = load_data("../Data/FinalData.csv")
+#df2.drop('Unnamed: 0', axis=1, inplace= True)
 ### C. Display the dataframe in the app
 st.dataframe(df)
 
@@ -46,25 +64,33 @@ st.dataframe(df)
 #######################################################################################################################################
 ### STATION MAP
 
-st.subheader('Location Map - NYC bike stations')      
+st.subheader('Location Map - Crimes')      
+map_df = df[(df['REPORT_MONTH'] == 12) & (df['D22'] == 1)]
+st.map(map_df, size=30, color='#DF8877') 
+#########################################################################################
+# Create a Streamlit app
+st.title('Crime Analysis App')
 
-st.map(df) 
+# Select a crime type
+crime_type = st.selectbox('Select Crime Type', df2['CRIME_TYPE'].unique())
 
-# Create a simple plot
-st.subheader("Interactive Plot")
-selected_column = st.selectbox("Select a Column for Plotting", df.columns)
-plt.figure(figsize=(8, 6))
-sns.histplot(df[selected_column], kde=True)
-st.pyplot()
+# Filter the DataFrame based on the selected crime_type
+filtered_division_counts = df2['DIVISION'][df2['CRIME_TYPE'] == crime_type].value_counts()
 
-# Display a cool map
-st.subheader("Interactive Map")
-map_data = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=['lat', 'lon']
-)
-st.map(map_data)
+# Create a bar plot using Seaborn
+fig, ax = plt.subplots(figsize=(20, 9))
+# Set the background color
+ax.set_facecolor('#080719') 
+sns.barplot(x=filtered_division_counts.index, y=filtered_division_counts, color='skyblue', ax=ax)
+plt.title(f'Occurrence of Divisions in {crime_type}')
+plt.xlabel('Division')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
 
+# Display the Seaborn plot in Streamlit
+st.pyplot(fig)
+
+#####################################################################################################
 # Add a fun section
 st.header("🚀 Blast Off!")
 st.markdown("""
