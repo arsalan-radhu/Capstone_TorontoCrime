@@ -4,9 +4,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pydeck as pdk
 
 # Set page title and favicon
-st.set_page_config(page_title="Awesome Streamlit Page", page_icon=":rocket:")
+st.set_page_config(page_title="Toronto Crime Type Predictor", page_icon=":rocket:")
 
 # Add a catchy title
 st.title("Toronto Crime Type Predictor")
@@ -64,9 +65,40 @@ st.dataframe(df)
 #######################################################################################################################################
 ### STATION MAP
 
-st.subheader('Location Map - Crimes')      
-map_df = df[(df['REPORT_MONTH'] == 12) & (df['D22'] == 1)]
-st.map(map_df, size=30, color='#DF8877') 
+# Set the initial focus to Toronto (latitude, longitude)
+
+neighbourhood = st.selectbox('Select Neighbourhood', df2['NEIGHBOURHOOD_158'].unique())
+month = st.selectbox('Select Month', df2['REPORT_MONTH'].unique())
+crime_type = st.selectbox('Select Crime Type', df2['CRIME_TYPE'].unique())
+toronto_center = [43.70, -79.42]
+
+# Filter the DataFrame based on the selected crime_type
+map_df = df2[(df2['REPORT_MONTH'] == month) & (df2['NEIGHBOURHOOD_158'] == neighbourhood)& (df2['CRIME_TYPE'] == crime_type)]
+
+# Use PyDeck to create a map centered on Toronto
+st.pydeck_chart(pdk.Deck(
+    map_style='mapbox://styles/mapbox/streets-v12',
+    initial_view_state=pdk.ViewState(
+        latitude=toronto_center[0],
+        longitude=toronto_center[1],
+        zoom=10.5,
+        pitch=50,
+    ),
+    layers=[
+        pdk.Layer(
+            'ScatterplotLayer',
+            data=map_df,
+            get_position='[lon, lat]',
+            get_radius=50,
+            get_color='[200, 30, 0, 160]',
+            pickable=True,
+            
+        ),
+    ],
+))
+
+
+
 #########################################################################################
 # Create a Streamlit app
 st.title('Crime Analysis App')
@@ -102,6 +134,6 @@ Happy Streamlit-ing! ✨
 # Add a footer
 st.markdown("""
 ---
-*Created with ❤️ by [Your Name]*  
-*Check out the [source code on GitHub](Your GitHub Link)*
+*Created with ❤️ by Arsalan Arif Radhu*  
+*Check out the [Capstone_TorontoCrime](https://github.com/arsalan-radhu/Capstone_TorontoCrime)*
 """)
