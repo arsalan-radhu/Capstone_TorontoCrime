@@ -67,6 +67,9 @@ The working data set can be downloaded using the following link: <a href= "https
     <li>
         To raise the accuracy and reduce runtime, PCA and Scaling were performed but it dropped the accuracy to 65%.
     </li>
+    <li>
+        In my pursuit of creating a robust crime prediction model, I extensively trained, tested, and optimized three prominent algorithms: K-Nearest Neighbors (KNN), Random Forest, and XGBoost. Through meticulous         fine-tuning, XGBoost emerged as the most effective, achieving a final accuracy of 65%. To enhance the model's transparency, I conducted a detailed analysis, including generating a comprehensive             classification report, uncovering feature importance to identify key predictors, constructing a confusion matrix to assess performance, and utilizing permutation importance to understand the impact of individual features on predictive accuracy. These steps provided valuable insights into the strengths and limitations of the XGBoost model for crime prediction.
+    </li>
 </ul>
 
 #### To-do: 
@@ -75,10 +78,7 @@ The working data set can be downloaded using the following link: <a href= "https
         The next step would be to increase the accuracy of our predictions.
     </li>
     <li>
-        Create and fit the KNN Model to see if it fits better to my data set.
-    </li>
-    <li>
-        Research more about what other models might fit my data set.
+        Try more advanced models and/or neural networks.
     </li>
 </ul>
 
