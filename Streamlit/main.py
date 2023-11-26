@@ -13,8 +13,8 @@ def main():
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     
     pages = {
-        "Home": home.show,
         "About": about.show,
+        "Home": home.show,
         "Contact": contact.show,
         
     }
