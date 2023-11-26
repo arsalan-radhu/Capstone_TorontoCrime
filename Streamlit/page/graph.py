@@ -37,11 +37,13 @@ def show():
         return df
 
     ### B. Load first 50K rows
-    df = load_data("./streamlit.csv")
+    #df = load_data("./streamlit.csv")
+    df = load_data("./Streamlit/streamlit.csv")
     df.drop('Unnamed: 0', axis=1, inplace= True)
 
 
-    df2 = load_data("./FinalDataFiltered.csv")
+    #df2 = load_data("./FinalDataFiltered.csv")
+    df2 = load_data("./Streamlit/FinalDataFiltered.csv")
     #df2.drop('Unnamed: 0', axis=1, inplace= True)
     ### C. Display the dataframe in the app
 
