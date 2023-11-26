@@ -87,10 +87,10 @@ def show():
 #############################################################################################################################################################################
     
     # Create a selector for DIVISION
-    selected_division = st.selectbox('Select DIVISION', df['DIVISION'].unique())
+    selected_division = st.selectbox('Select DIVISION', df2['DIVISION'].unique())
 
     #Group the DataFrame by DIVISION and get the list of neighborhoods
-    neighborhoods = df[df['DIVISION'] == selected_division]['NEIGHBORHOOD_158'].unique()
+    neighborhoods = df2[df2['DIVISION'] == selected_division]['NEIGHBORHOOD_158'].unique()
 
     # Display the list of neighborhoods
     st.write(f"Neighborhoods in {selected_division}:", neighborhoods)
