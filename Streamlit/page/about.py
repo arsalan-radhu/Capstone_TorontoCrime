@@ -52,7 +52,7 @@ def show():
     st.markdown("4. **Run the Jupyter Notebooks in the 'Notebooks' directory.**")
 
     st.header("Contributors")
-    st.markdown("Arsalan Arif Radhu")
+    st.markdown("Arsalan Arif Radhu adn Subin Kim")
 
     st.header("Get Involved")
     st.markdown("Feel free to contribute, open issues, or make suggestions to improve the analysis and its impact.")
