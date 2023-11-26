@@ -1,5 +1,5 @@
 import streamlit as st
-from page import home, about, contact
+from page import graph, about, contact
 
 def main():
     # Set page title and favicon
@@ -14,7 +14,7 @@ def main():
     
     pages = {
         "About": about.show,
-        "Home": home.show,
+        "EDA": graph.show,
         "Contact": contact.show,
         
     }
