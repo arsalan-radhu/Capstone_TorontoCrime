@@ -85,6 +85,19 @@ def show():
     ))
 
 #############################################################################################################################################################################
+    
+    # Create a selector for DIVISION
+    selected_division = st.selectbox('Select DIVISION', df['DIVISION'].unique())
+
+    #Group the DataFrame by DIVISION and get the list of neighborhoods
+    neighborhoods = df[df['DIVISION'] == selected_division]['NEIGHBORHOOD_158'].unique()
+
+    # Display the list of neighborhoods
+    st.write(f"Neighborhoods in {selected_division}:", neighborhoods)
+    
+#########################################################################################################################    
+    
+    
     st.markdown("### Amount of Crimes by Division")
     # Select a crime type
     crime_type = st.selectbox('Select Crime Type', df2['CRIME_TYPE'].unique(),key=1)

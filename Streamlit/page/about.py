@@ -55,4 +55,5 @@ def show():
     st.markdown("Arsalan Arif Radhu")
 
     st.header("Get Involved")
-    st.markdown("Feel free to contribute, open issues, or make suggestions to improve the analysis and its impact. Together, we can make Toronto safer and more secure for everyone.")
+    st.markdown("Feel free to contribute, open issues, or make suggestions to improve the analysis and its impact.")
+    st.markdown("Together, we can make Toronto safer and more secure for everyone.")
