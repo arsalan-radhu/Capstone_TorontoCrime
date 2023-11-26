@@ -37,11 +37,11 @@ def show():
         return df
 
     ### B. Load first 50K rows
-    df = load_data("./Streamlit/streamlit.csv")
+    df = load_data("./streamlit.csv")
     df.drop('Unnamed: 0', axis=1, inplace= True)
 
 
-    df2 = load_data("./Streamlit/FinalDataFiltered.csv")
+    df2 = load_data("./FinalDataFiltered.csv")
     #df2.drop('Unnamed: 0', axis=1, inplace= True)
     ### C. Display the dataframe in the app
 
@@ -87,13 +87,14 @@ def show():
 #############################################################################################################################################################################
     
     # Create a selector for DIVISION
-    selected_division = st.selectbox('Select DIVISION', df2['DIVISION'].unique())
+    #selected_division = st.selectbox('Select DIVISION', df2['DIVISION'].unique())
 
-    #Group the DataFrame by DIVISION and get the list of neighborhoods
-    neighborhoods = df2[df2['DIVISION'] == selected_division]['NEIGHBORHOOD_158'].unique()
+    # Group the DataFrame by DIVISION and get the list of neighborhoods
+    #neighborhoods = df2.loc[df2['DIVISION'] == selected_division, 'NEIGHBORHOOD_158'].unique()
 
     # Display the list of neighborhoods
-    st.write(f"Neighborhoods in {selected_division}:", neighborhoods)
+    #st.write(f"Neighborhoods in {selected_division}:", neighborhoods.tolist())
+
     
 #########################################################################################################################    
     
