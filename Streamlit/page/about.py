@@ -16,13 +16,13 @@ def show():
     st.markdown("This Streamlit app provides insights into crime types in different neighborhoods in Toronto.")
     st.markdown('<div style="padding-top:100.000%;position:relative;"><iframe src="https://gifer.com/embed/7h9e" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" allowFullScreen></iframe></div><p><a href="https://gifer.com">via GIFER</a></p>', unsafe_allow_html=True)
     st.header("Problem Area")
-    st.markdown("Crime is a critical concern for any city, and Toronto is no exception. Understanding crime trends, patterns, and their distribution across neighborhoods is crucial for policymakers, law enforcement, and the general public.")
+    st.markdown("Crime is a critical concern for any city, and Toronto is no exception. Understanding crime trends, patterns, and their distribution across neighbourhoods is crucial for policymakers, law enforcement, and the general public.")
 
     st.header("Those Affected")
     st.markdown("The impact of crime extends to everyone in a community. The insights generated from this project will be beneficial for various stakeholders.")
 
     st.header("Proposed Data Science Solution")
-    st.markdown("Our approach to solving this problem is based on data science techniques. We will perform data analysis, visualization, and predictive modeling to gain insights into identifying neighborhoods with the highest and lowest crime rates, analyzing temporal trends, predicting future crime rates, and evaluating the effectiveness of law enforcement initiatives.")
+    st.markdown("Our approach to solving this problem is based on data science techniques. We will perform data analysis, visualization, and predictive modelling to gain insights into identifying neighborhoods with the highest and lowest crime rates, analyzing temporal trends, predicting future crime rates, and evaluating the effectiveness of law enforcement initiatives.")
 
     st.header("Impact of the Solution")
     st.markdown("The impact of this solution includes improved safety, informed decision-making, and aware communities.")
@@ -47,12 +47,12 @@ def show():
     st.markdown("2. **Set up the Python environment with the required packages.**")
     st.code("pip install -r Docs/requirements.txt", language="bash")
 
-    st.markdown("3. **Download the cleaned and formated dataset from the link provided [here](https://drive.google.com/file/d/150CoI-976T7_jVDGR9KmNvVGDsOM4ZcV/view?usp=sharing).**")
+    st.markdown("3. **Download the cleaned and formatted dataset from the link provided [here](https://drive.google.com/file/d/150CoI-976T7_jVDGR9KmNvVGDsOM4ZcV/view?usp=sharing).**")
 
     st.markdown("4. **Run the Jupyter Notebooks in the 'Notebooks' directory.**")
 
     st.header("Contributors")
-    st.markdown("Arsalan Arif Radhu and Subin Kim")
+    st.markdown("Arsalan Arif Radhu")
 
     st.header("Get Involved")
     st.markdown("Feel free to contribute, open issues, or make suggestions to improve the analysis and its impact.")
