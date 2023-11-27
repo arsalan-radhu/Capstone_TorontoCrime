@@ -37,13 +37,13 @@ def show():
         return df
 
     ### B. Load first 50K rows
-    #df = load_data("./streamlit.csv")
-    df = load_data("./Streamlit/streamlit.csv")
+    df = load_data("./streamlit.csv")
+    #df = load_data("./Streamlit/streamlit.csv")
     df.drop('Unnamed: 0', axis=1, inplace= True)
 
 
-    #df2 = load_data("./FinalDataFiltered.csv")
-    df2 = load_data("./Streamlit/FinalDataFiltered.csv")
+    df2 = load_data("./FinalDataFiltered.csv")
+    #df2 = load_data("./Streamlit/FinalDataFiltered.csv")
     #df2.drop('Unnamed: 0', axis=1, inplace= True)
     ### C. Display the dataframe in the app
 
@@ -87,15 +87,41 @@ def show():
     ))
 
 #############################################################################################################################################################################
-    
-    # Create a selector for DIVISION
-    #selected_division = st.selectbox('Select DIVISION', df2['DIVISION'].unique())
 
-    # Group the DataFrame by DIVISION and get the list of neighborhoods
-    #neighborhoods = df2.loc[df2['DIVISION'] == selected_division, 'NEIGHBORHOOD_158'].unique()
 
-    # Display the list of neighborhoods
-    #st.write(f"Neighborhoods in {selected_division}:", neighborhoods.tolist())
+    # Define the division and neighborhood data
+    data = {
+        'Division': ['D51', 'D14', 'D32', 'D31', 'D52', 'D41', 'D43', 'D55', 'D22', 'D23', 'D42', 'D53', 'D33', 'D11', 'D12', 'D13', 'D54', 'NSA'],
+        'Neighborhoods': [
+            'South Riverdale, Church-Yonge Corridor, Waterfront Communities-The Island, North St.James Town, Regent Park, Cabbagetown-South St.James Town, Moss Park, St. Lawrence-East Bayfront-The Islands, Downtown Yonge East',
+            'South Parkdale, Trinity-Bellwoods, Waterfront Communities-The Island, Kensington-Chinatown, Annex, University, Dovercourt-Wallace Emerson-Junction, Niagara, Palmerston-Little Italy, Dufferin Grove, Little Portugal, Fort York-Liberty Village',
+            'York University Heights, Lansing-Westgate, Yorkdale-Glen Park, St.Andrew-Windfields, Westminster-Branson, Clanton Park, Newtonbrook West, Englemount-Lawrence, Bathurst Manor, Oakdale Beverley Heights, Willowdale East, Willowdale West, Bedford Park-Nortown, Bridle Path-Sunnybrook-York Mills, Lawrence Park North, Newtonbrook East',
+            'York University Heights, Humber Summit, Humbermede, Glenfield-Jane Heights, Oakdale Beverley Heights, Black Creek, Pelmo Park-Humberlea',
+            'Waterfront Communities-The Island, Kensington-Chinatown, University, Bay Street Corridor',
+            'Clairlea-Birchmount, Cliffcrest, Ionview, Kennedy Park, Dorset Park, Oakridge, Wexford/Maryvale, Eglinton East, Bendale, Birchcliffe-Cliffside',
+            'Scarborough Village, Centennial Scarborough, Cliffcrest, Guildwood, West Hill, Highland Creek, Eglinton East, Bendale, Rouge, Woburn, Morningside',
+            'The Beaches, Danforth East York, Danforth, South Riverdale, Taylor-Massey, Flemingdon Park, Broadview North, North Riverdale, Greenwood-Coxwell, Victoria Village, O\'Connor-Parkview, Old East York, Blake-Jones, East End-Danforth, Playter Estates-Danforth, Woodbine-Lumsden, Woodbine Corridor, Leaside-Bennington',
+            'Stonegate-Queensway, Islington-City Centre West, Princess-Rosethorn, Etobicoke West Mall, Kingsway South, Humber Heights-Westmount, Edenbridge-Humber Valley, Eringate-Centennial-West Deane, Alderwood, New Toronto, Long Branch, Markland Wood, Mimico (includes Humber Bay Shores)',
+            'Thistletown-Beaumond Heights, Humbermede, West Humber-Clairville, Kingsview Village-The Westway, Humber Heights-Westmount, Edenbridge-Humber Valley, Elms-Old Rexdale, Eringate-Centennial-West Deane, Mount Olive-Silverstone-Jamestown, Rexdale-Kipling, Willowridge-Martingrove-Richview',
+            'Tam O\'Shanter-Sullivan, Centennial Scarborough, Agincourt North, Agincourt South-Malvern West, L\'Amoreaux, Rouge, Malvern, Steeles, Milliken',
+            'Yonge-St.Clair, Thorncliffe Park, Broadview North, Forest Hill North, Casa Loma, Forest Hill South, Annex, Rosedale-Moore Park, Mount Pleasant East, Mount Pleasant West, Bedford Park-Nortown, Bridle Path-Sunnybrook-York Mills, Lawrence Park South, Yonge-Eglinton, Leaside-Bennington',
+            'St.Andrew-Windfields, Victoria Village, Bayview Woods-Steeles, Henry Farm, Hillcrest Village, Banbury-Don Mills, Parkwoods-Donalda, Bayview Village, Bridle Path-Sunnybrook-York Mills, Don Valley Village, Pleasant View, Leaside-Bennington',
+            'South Parkdale, Junction Area, Runnymede-Bloor West Village, Roncesvalles, Dovercourt-Wallace Emerson-Junction, High Park North, High Park-Swansea, Weston-Pelham Park, Lambton Baby Point, Rockcliffe-Smythe, Dufferin Grove, Little Portugal',
+            'Rustic, Junction Area, Keelesdale-Eglinton West, Mount Dennis, Beechborough-Greenbrook, Weston-Pelham Park, Pelmo Park-Humberlea, Rockcliffe-Smythe, Weston'
+        ]
+    }
+
+    # Create a DataFrame
+    df = pd.DataFrame(data)
+
+    # Split the neighborhoods into separate rows
+    df['Neighborhoods'] = df['Neighborhoods'].apply(lambda x: [neighborhood.strip() for neighborhood in x.split(',')])
+    df = df.explode('Neighborhoods')
+
+    # Display the DataFrame
+    st.table(df)
+
+
 
     
 #########################################################################################################################    

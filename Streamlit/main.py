@@ -20,7 +20,10 @@ def main():
     }
 
     # Create a sidebar for navigation
-    page = st.sidebar.selectbox("Select a page", list(pages.keys()))
+    #page = st.sidebar.selectbox("Select a page", list(pages.keys()))
+    # Create a sidebar for navigation
+    page_options = list(pages.keys())
+    page = st.sidebar.selectbox("Select a page", page_options)
 
     # Display the selected page
     pages[page]()
