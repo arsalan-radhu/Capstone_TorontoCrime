@@ -42,7 +42,6 @@ def show():
 
     #df2 = load_data("./FinalDataFiltered.csv")
     df2 = load_data("./Streamlit/FinalDataFiltered.csv")
-    df2.drop('Unnamed: 0', axis=1, inplace= True)
     ### C. Display the dataframe in the app
 
     st.markdown("### Final Data Set")

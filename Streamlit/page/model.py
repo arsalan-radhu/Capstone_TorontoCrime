@@ -140,6 +140,7 @@ def show():
                     mode="gauge+number",
                     value=prob_value,
                     title={'text': f"% Probability of {category}"},
+                    number={'suffix': '%'},  # Adding a percentage sign to the number
                     gauge={'axis': {'range': [0, 100]}, 'bar': {'color': '#4a7ba6'}},
                 ))
                 st.plotly_chart(fig, use_container_width=True)
