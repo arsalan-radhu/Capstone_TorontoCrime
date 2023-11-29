@@ -68,26 +68,29 @@ def show():
         map_df = df2[(df2['REPORT_MONTH'] == month) & (df2['NEIGHBOURHOOD_158'] == neighbourhood) & (df2['CRIME_TYPE'] == crime_type)]
 
         # Use PyDeck to create a map centered on Toronto
-        st.pydeck_chart(pdk.Deck(
-            map_style='mapbox://styles/mapbox/streets-v12',
-            initial_view_state=pdk.ViewState(
-                latitude=toronto_center[0],
-                longitude=toronto_center[1],
-                zoom=10.5,
-                pitch=50,
-            ),
-            layers=[
-                pdk.Layer(
-                    'ScatterplotLayer',
-                    data=map_df,
-                    get_position='[lon, lat]',
-                    get_radius=50,
-                    get_color='[200, 30, 0, 160]',
-                    pickable=True,
-                    
+        deck = pdk.Deck(
+        map_style='mapbox://styles/mapbox/streets-v12',
+        initial_view_state=pdk.ViewState(
+            latitude=toronto_center[0],
+            longitude=toronto_center[1],
+            zoom=10.5,
+            pitch=50,
+        ),
+        layers=[
+            pdk.Layer(
+                'ColumnLayer',
+                data=map_df,
+                get_position='[lon, lat]',
+                get_elevation='height',
+                elevation_scale=50,
+                get_fill_color='[200, 30, 0, 160]',
+                pickable=True,
+                auto_highlight=True,
                 ),
             ],
-        ))
+        )
+
+        st.pydeck_chart(deck)
 
 #############################################################################################################################################################################
 
