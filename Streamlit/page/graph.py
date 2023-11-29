@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import plotly.express as px
 import pydeck as pdk
 
@@ -37,113 +35,127 @@ def show():
         return df
 
     ### B. Load first 50K rows
-    df = load_data("./streamlit.csv")
-    #df = load_data("./Streamlit/streamlit.csv")
+    #df = load_data("./streamlit.csv")
+    df = load_data("./Streamlit/streamlit.csv")
     df.drop('Unnamed: 0', axis=1, inplace= True)
 
 
-    df2 = load_data("./FinalDataFiltered.csv")
-    #df2 = load_data("./Streamlit/FinalDataFiltered.csv")
-    #df2.drop('Unnamed: 0', axis=1, inplace= True)
+    #df2 = load_data("./FinalDataFiltered.csv")
+    df2 = load_data("./Streamlit/FinalDataFiltered.csv")
+    df2.drop('Unnamed: 0', axis=1, inplace= True)
     ### C. Display the dataframe in the app
 
     st.markdown("### Final Data Set")
-    st.dataframe(df)
+    st.dataframe(df,height=420)
 
 
     ################################################################### STATION MAP ######################################################################### 
 
-    # Set the initial focus to Toronto (latitude, longitude)
-    st.markdown("### Crime in Toronto")
+    # Checkbox for each option in the sidebar
+    map_view = st.sidebar.checkbox("Map View")
+    crime_analysis = st.sidebar.checkbox("Crime Analysis")
+    crime_over_months = st.sidebar.checkbox("Crime Distribution over the Months")
 
-    neighbourhood = st.selectbox('Select Neighbourhood', df2['NEIGHBOURHOOD_158'].unique())
-    month = st.selectbox('Select Month', df2['REPORT_MONTH'].unique())
-    crime_type = st.selectbox('Select Crime Type', df2['CRIME_TYPE'].unique())
-    toronto_center = [43.70, -79.42]
+    if map_view:
+        # Set the initial focus to Toronto (latitude, longitude)
+        st.markdown("### Crime in Toronto")
 
-    # Filter the DataFrame based on the selected crime_type
-    map_df = df2[(df2['REPORT_MONTH'] == month) & (df2['NEIGHBOURHOOD_158'] == neighbourhood) & (df2['CRIME_TYPE'] == crime_type)]
+        neighbourhood = st.selectbox('Select Neighbourhood', df2['NEIGHBOURHOOD_158'].unique())
+        month = st.selectbox('Select Month', df2['REPORT_MONTH'].unique())
+        crime_type = st.selectbox('Select Crime Type', df2['CRIME_TYPE'].unique())
+        toronto_center = [43.70, -79.42]
 
-    # Use PyDeck to create a map centered on Toronto
-    st.pydeck_chart(pdk.Deck(
-        map_style='mapbox://styles/mapbox/streets-v12',
-        initial_view_state=pdk.ViewState(
-            latitude=toronto_center[0],
-            longitude=toronto_center[1],
-            zoom=10.5,
-            pitch=50,
-        ),
-        layers=[
-            pdk.Layer(
-                'ScatterplotLayer',
-                data=map_df,
-                get_position='[lon, lat]',
-                get_radius=50,
-                get_color='[200, 30, 0, 160]',
-                pickable=True,
-                
+        # Filter the DataFrame based on the selected crime_type
+        map_df = df2[(df2['REPORT_MONTH'] == month) & (df2['NEIGHBOURHOOD_158'] == neighbourhood) & (df2['CRIME_TYPE'] == crime_type)]
+
+        # Use PyDeck to create a map centered on Toronto
+        st.pydeck_chart(pdk.Deck(
+            map_style='mapbox://styles/mapbox/streets-v12',
+            initial_view_state=pdk.ViewState(
+                latitude=toronto_center[0],
+                longitude=toronto_center[1],
+                zoom=10.5,
+                pitch=50,
             ),
-        ],
-    ))
+            layers=[
+                pdk.Layer(
+                    'ScatterplotLayer',
+                    data=map_df,
+                    get_position='[lon, lat]',
+                    get_radius=50,
+                    get_color='[200, 30, 0, 160]',
+                    pickable=True,
+                    
+                ),
+            ],
+        ))
 
 #############################################################################################################################################################################
-
-
-    # Define the division and neighborhood data
-    data = {
-        'Division': ['D51', 'D14', 'D32', 'D31', 'D52', 'D41', 'D43', 'D55', 'D22', 'D23', 'D42', 'D53', 'D33', 'D11', 'D12', 'D13', 'D54', 'NSA'],
-        'Neighborhoods': [
-            'South Riverdale, Church-Yonge Corridor, Waterfront Communities-The Island, North St.James Town, Regent Park, Cabbagetown-South St.James Town, Moss Park, St. Lawrence-East Bayfront-The Islands, Downtown Yonge East',
-            'South Parkdale, Trinity-Bellwoods, Waterfront Communities-The Island, Kensington-Chinatown, Annex, University, Dovercourt-Wallace Emerson-Junction, Niagara, Palmerston-Little Italy, Dufferin Grove, Little Portugal, Fort York-Liberty Village',
-            'York University Heights, Lansing-Westgate, Yorkdale-Glen Park, St.Andrew-Windfields, Westminster-Branson, Clanton Park, Newtonbrook West, Englemount-Lawrence, Bathurst Manor, Oakdale Beverley Heights, Willowdale East, Willowdale West, Bedford Park-Nortown, Bridle Path-Sunnybrook-York Mills, Lawrence Park North, Newtonbrook East',
-            'York University Heights, Humber Summit, Humbermede, Glenfield-Jane Heights, Oakdale Beverley Heights, Black Creek, Pelmo Park-Humberlea',
-            'Waterfront Communities-The Island, Kensington-Chinatown, University, Bay Street Corridor',
-            'Clairlea-Birchmount, Cliffcrest, Ionview, Kennedy Park, Dorset Park, Oakridge, Wexford/Maryvale, Eglinton East, Bendale, Birchcliffe-Cliffside',
-            'Scarborough Village, Centennial Scarborough, Cliffcrest, Guildwood, West Hill, Highland Creek, Eglinton East, Bendale, Rouge, Woburn, Morningside',
-            'The Beaches, Danforth East York, Danforth, South Riverdale, Taylor-Massey, Flemingdon Park, Broadview North, North Riverdale, Greenwood-Coxwell, Victoria Village, O\'Connor-Parkview, Old East York, Blake-Jones, East End-Danforth, Playter Estates-Danforth, Woodbine-Lumsden, Woodbine Corridor, Leaside-Bennington',
-            'Stonegate-Queensway, Islington-City Centre West, Princess-Rosethorn, Etobicoke West Mall, Kingsway South, Humber Heights-Westmount, Edenbridge-Humber Valley, Eringate-Centennial-West Deane, Alderwood, New Toronto, Long Branch, Markland Wood, Mimico (includes Humber Bay Shores)',
-            'Thistletown-Beaumond Heights, Humbermede, West Humber-Clairville, Kingsview Village-The Westway, Humber Heights-Westmount, Edenbridge-Humber Valley, Elms-Old Rexdale, Eringate-Centennial-West Deane, Mount Olive-Silverstone-Jamestown, Rexdale-Kipling, Willowridge-Martingrove-Richview',
-            'Tam O\'Shanter-Sullivan, Centennial Scarborough, Agincourt North, Agincourt South-Malvern West, L\'Amoreaux, Rouge, Malvern, Steeles, Milliken',
-            'Yonge-St.Clair, Thorncliffe Park, Broadview North, Forest Hill North, Casa Loma, Forest Hill South, Annex, Rosedale-Moore Park, Mount Pleasant East, Mount Pleasant West, Bedford Park-Nortown, Bridle Path-Sunnybrook-York Mills, Lawrence Park South, Yonge-Eglinton, Leaside-Bennington',
-            'St.Andrew-Windfields, Victoria Village, Bayview Woods-Steeles, Henry Farm, Hillcrest Village, Banbury-Don Mills, Parkwoods-Donalda, Bayview Village, Bridle Path-Sunnybrook-York Mills, Don Valley Village, Pleasant View, Leaside-Bennington',
-            'South Parkdale, Junction Area, Runnymede-Bloor West Village, Roncesvalles, Dovercourt-Wallace Emerson-Junction, High Park North, High Park-Swansea, Weston-Pelham Park, Lambton Baby Point, Rockcliffe-Smythe, Dufferin Grove, Little Portugal',
-            'Rustic, Junction Area, Keelesdale-Eglinton West, Mount Dennis, Beechborough-Greenbrook, Weston-Pelham Park, Pelmo Park-Humberlea, Rockcliffe-Smythe, Weston'
-        ]
-    }
-
-    # Create a DataFrame
-    df = pd.DataFrame(data)
-
-    # Split the neighborhoods into separate rows
-    df['Neighborhoods'] = df['Neighborhoods'].apply(lambda x: [neighborhood.strip() for neighborhood in x.split(',')])
-    df = df.explode('Neighborhoods')
-
-    # Display the DataFrame
-    st.table(df)
 
 
 
     
 #########################################################################################################################    
     
-    
-    st.markdown("### Amount of Crimes by Division")
-    # Select a crime type
-    crime_type = st.selectbox('Select Crime Type', df2['CRIME_TYPE'].unique(),key=1)
+    if crime_analysis:
+        st.markdown("### Amount of Crimes by Neighbourhoods")
+        
+        # Select a neighborhood
+        selected_neighborhood = st.selectbox('Select Neighborhood', df2['NEIGHBOURHOOD_158'].unique(), key=2) 
 
-    # Filter the DataFrame based on the selected crime_type
-    filtered_division_counts = df2['DIVISION'][df2['CRIME_TYPE'] == crime_type].value_counts()
+        # Filter the DataFrame based on the selected crime_type and neighborhood
+        filtered_crime_counts = df2[df2['NEIGHBOURHOOD_158'] == selected_neighborhood]['CRIME_TYPE'].value_counts()
 
-    
+        # Create a bar plot using Plotly Express
+        fig = px.bar(
+            x=filtered_crime_counts.index,
+            y=filtered_crime_counts,
+            color=filtered_crime_counts.index,
+            labels={'x': 'Crime Type', 'y': 'Count'},
+            title=f'Occurrence of Crime Types in {selected_neighborhood}',
+            template='plotly_dark'
+        )
 
-    # Create a bar plot using Plotly Express
-    fig = px.bar(x=filtered_division_counts.index, y=filtered_division_counts, color=filtered_division_counts.index,
-             labels={'x': 'Division', 'y': 'Count'},
-             title=f'Occurrence of {crime_type} in Divisions',
-             template='plotly_dark')
+        # Change the bar color to #4a7ba6
+        fig.update_traces(marker_color='#4a7ba6')
 
-    # Rotate x-axis labels for better readability
-    fig.update_layout(xaxis=dict(tickangle=45))
+        # Rotate x-axis labels for better readability
+        fig.update_layout(xaxis=dict(tickangle=45))
 
-    # Display the Plotly Express plot in Streamlit
-    st.plotly_chart(fig)
+        # Display the Plotly Express plot in Streamlit
+        st.plotly_chart(fig)
+
+#######################################################################################################################################
+    if crime_over_months:
+        st.markdown("### Distribution of Occurrences of Crimes over the Months")
+        # Get unique crime types for checkboxes
+        crime_types = df2['CRIME_TYPE'].unique()
+
+        # Divide the page into three columns
+        col1, col2, col3 = st.columns(3)
+
+        # Create checkboxes in-line
+        selected_crimes = []
+        for i, crime_type in enumerate(crime_types):
+            if i % 3 == 0:
+                checkbox_container = col1
+            elif i % 3 == 1:
+                checkbox_container = col2
+            else:
+                checkbox_container = col3
+            
+            if checkbox_container.checkbox(crime_type):
+                selected_crimes.append(crime_type)
+
+        # Filter the DataFrame based on selected crime types
+        filtered_df = df2[df2['CRIME_TYPE'].isin(selected_crimes)]
+
+        # Group by 'OCC_MONTH' and 'CRIME_TYPE', count occurrences for each crime type
+        grouped = filtered_df.groupby(['OCC_MONTH', 'CRIME_TYPE'])['EVENT_UNIQUE_ID'].count().reset_index(name='Count')
+
+        # Create a line graph using Plotly Express with multiple lines for each selected crime type
+        line_chart = px.line(grouped, x='OCC_MONTH', y='Count', color='CRIME_TYPE',
+                            labels={'OCC_MONTH': 'Month', 'Count': 'Count of Occurrences of Crimes'},
+                            title=f'Count of Occurrences of Selected Crimes by Month')
+        # Display the line graph
+        st.plotly_chart(line_chart)

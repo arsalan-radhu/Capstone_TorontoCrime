@@ -1,9 +1,9 @@
 import streamlit as st
-from page import graph, about, contact
+from page import graph, about, contact, model
 
 def main():
     # Set page title and favicon
-    st.set_page_config(page_title="Toronto Crime Type Predictor", page_icon=":rocket:")
+    st.set_page_config(page_title="Toronto Crime Type Predictor", page_icon="👮‍♂️")
     # Remove Streamlit default menu
     hide_streamlit_style = """
             <style>
@@ -15,6 +15,7 @@ def main():
     pages = {
         "About": about.show,
         "EDA": graph.show,
+        "Predictor": model.show,
         "Contact": contact.show,
         
     }

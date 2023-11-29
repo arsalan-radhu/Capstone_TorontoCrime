@@ -12,23 +12,22 @@ def data_field_descriptions():
 
     return df
 def show():
-    st.title("Toronto Crime Type Analysis")
-    st.markdown("This Streamlit app provides insights into crime types in different neighborhoods in Toronto.")
+    st.title("Predicting Crime Rates Based on Neighborhoods in Toronto")
     st.markdown('<div style="padding-top:100.000%;position:relative;"><iframe src="https://gifer.com/embed/7h9e" width="100%" height="100%" style="position:absolute;top:0;left:0;" frameBorder="0" allowFullScreen></iframe></div><p><a href="https://gifer.com">via GIFER</a></p>', unsafe_allow_html=True)
     st.header("Problem Area")
     st.markdown("Crime is a critical concern for any city, and Toronto is no exception. Understanding crime trends, patterns, and their distribution across neighbourhoods is crucial for policymakers, law enforcement, and the general public.")
 
     st.header("Those Affected")
-    st.markdown("The impact of crime extends to everyone in a community. The insights generated from this project will be beneficial for various stakeholders.")
+    st.markdown("The impact of crime extends to everyone in a community. The insights generated from this project will be beneficial for everyone in the community.")
 
     st.header("Proposed Data Science Solution")
     st.markdown("Our approach to solving this problem is based on data science techniques. We will perform data analysis, visualization, and predictive modelling to gain insights into identifying neighborhoods with the highest and lowest crime rates, analyzing temporal trends, predicting future crime rates, and evaluating the effectiveness of law enforcement initiatives.")
 
     st.header("Impact of the Solution")
-    st.markdown("The impact of this solution includes improved safety, informed decision-making, and aware communities.")
+    st.markdown("The impact of this solution includes improved safety, informed decision-making, and an aware communities.")
 
     st.header("Dataset")
-    st.markdown("For this project, we utilized the 'Toronto Crime Data' dataset, which comprises crime reports collected over several years, categorized by crime type, location, and date.")
+    st.markdown("For this project, we utilized the 'Toronto Crime Data' dataset, which comprises crime reports collected between 2014 2022, categorized by crime type, location, and date.")
     st.markdown("Below is a table with descriptions of the data fields used in the Toronto Crime Analysis project.")
 
     field_descriptions = data_field_descriptions()
@@ -36,24 +35,22 @@ def show():
     st.table(field_descriptions)
 
     st.header("Work Flow")
-    st.markdown("I collected and cleaned the data from the Toronto Police's Open Data source, breaking it into nine files, concatenating them, and performing cleaning processes. Utilizing Tableau for basic exploratory data analysis (EDA), I gained insights into crime trends concerning the time of day, year, neighborhood, and location type. Further, in-depth Python analysis delved into the relationship between crime and Police division. After preprocessing involved one-hot encoding, dropping non-usable columns, and embedding the target variable, 'CRIME_TYPE,' I trained a basic Logistic Regression model. Despite achieving an 85% accuracy on the test data after 6500 iterations, I explored techniques like PCA and Scaling. Ultimately, the XGBoost algorithm, after extensive training, testing, and optimization, emerged as the most effective, delivering a final accuracy of 65%. To enhance the model's interpretability, I conducted a comprehensive analysis, including generating a classification report, revealing feature importance, constructing a confusion matrix, and utilizing permutation importance to understand the impact of individual features on predictive accuracy. These steps provided valuable insights into the strengths and limitations of the XGBoost model for crime prediction.")
-
-
-    st.header("Installation and Usage")
-    st.markdown("## To use this project, follow these steps:")
-    st.markdown("1. **Clone the repository:**")
-    st.code("git clone https://github.com/arsalan-radhu/Capstone_TorontoCrime.git", language="bash")
-
-    st.markdown("2. **Set up the Python environment with the required packages.**")
-    st.code("pip install -r Docs/requirements.txt", language="bash")
-
-    st.markdown("3. **Download the cleaned and formatted dataset from the link provided [here](https://drive.google.com/file/d/150CoI-976T7_jVDGR9KmNvVGDsOM4ZcV/view?usp=sharing).**")
-
-    st.markdown("4. **Run the Jupyter Notebooks in the 'Notebooks' directory.**")
+    st.markdown(
+        """
+        - The data was sourced from the Toronto Police Services's Open Data Portal and was collected from 2014 to 2022. 
+        - The files were split-up based on crime type. I had to join all of these tables for analysis.
+        - I used Tableau for Exploratory Data Analysis (EDA). I gained insights on crime trends based on time of day, year, neighborhood, and location. 
+        - Python was used to understand the relationship between crime type and police division (neighborhood).
+        - After preprocessing the data, I trained a basic logistic regression model to predict the type of crime likely to happen based on location and time. 
+        - My model achieved a 50% accuracy on test data. The low accuracy rate meant other models and optimization techniques were needed.
+        - Ultimately, the xGBoost algorithm, after extensive training, testing, and optimization, emerged as the most effective. It delivered a final accuracy of 65%.
+        - To enhance interpretability of the model, various performance metrics were needed like: generating a classification report, constructing a confusion matrix, revealing feature importance, and utilizing permutation importance. All of these metrics help us understand what columns have the most influence on the outcome and predictive accuracy.
+        """
+    )
 
     st.header("Contributors")
     st.markdown("Arsalan Arif Radhu")
 
     st.header("Get Involved")
     st.markdown("Feel free to contribute, open issues, or make suggestions to improve the analysis and its impact.")
-    st.markdown("Together, we can make Toronto safer and more secure for everyone.")
+    st.markdown("We can always work together to further improve the project!")
