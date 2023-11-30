@@ -18,7 +18,7 @@ def show():
     #st.write('You selected `%s`' % filename)
 
     # Add a catchy title
-    st.title("Getting to know the Data")
+    st.title("Exploratory Data Analysis")
     st.set_option('deprecation.showPyplotGlobalUse', False)
     ############################################################## DATA LOADING ############################################################################ 
 
