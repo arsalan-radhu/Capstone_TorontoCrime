@@ -126,6 +126,8 @@ def show():
 
 #######################################################################################################################################
     if crime_over_months:
+        # Convert 'OCC_MONTH' to datetime
+        df2['OCC_MONTH'] = pd.to_datetime(df2['OCC_MONTH'])
         st.markdown("### Distribution of Occurrences of Crimes over the Months")
         # Get unique crime types for checkboxes
         crime_types = df2['CRIME_TYPE'].unique()
