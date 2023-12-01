@@ -1,3 +1,4 @@
+import calendar
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -126,8 +127,13 @@ def show():
 
 #######################################################################################################################################
     if crime_over_months:
-        # Convert 'OCC_MONTH' to datetime
-        df2['OCC_MONTH'] = pd.to_datetime(df2['OCC_MONTH'])
+        
+        # Dictionary to map month names to numbers
+        month_dict = {month: idx for idx, month in enumerate(calendar.month_name) if month}
+
+        # Map month names to their numerical representation
+        df2['OCC_MONTH_NUM'] = df2['OCC_MONTH'].map(month_dict)
+
         st.markdown("### Distribution of Occurrences of Crimes over the Months")
         # Get unique crime types for checkboxes
         crime_types = df2['CRIME_TYPE'].unique()
@@ -144,19 +150,23 @@ def show():
                 checkbox_container = col2
             else:
                 checkbox_container = col3
-            
+
             if checkbox_container.checkbox(crime_type):
                 selected_crimes.append(crime_type)
 
         # Filter the DataFrame based on selected crime types
         filtered_df = df2[df2['CRIME_TYPE'].isin(selected_crimes)]
 
-        # Group by 'OCC_MONTH' and 'CRIME_TYPE', count occurrences for each crime type
-        grouped = filtered_df.groupby(['OCC_MONTH', 'CRIME_TYPE'])['EVENT_UNIQUE_ID'].count().reset_index(name='Count')
+        # Group by 'OCC_MONTH_NUM' and 'CRIME_TYPE', count occurrences for each crime type
+        grouped = filtered_df.groupby(['OCC_MONTH_NUM', 'CRIME_TYPE'])['EVENT_UNIQUE_ID'].count().reset_index(name='Count')
 
         # Create a line graph using Plotly Express with multiple lines for each selected crime type
-        line_chart = px.line(grouped, x='OCC_MONTH', y='Count', color='CRIME_TYPE',
-                            labels={'OCC_MONTH': 'Month', 'Count': 'Count of Occurrences of Crimes'},
-                            title=f'Count of Occurrences of Selected Crimes by Month')
+        line_chart = px.line(grouped, x='OCC_MONTH_NUM', y='Count', color='CRIME_TYPE',
+                            labels={'OCC_MONTH_NUM': 'Month', 'Count': 'Count of Occurrences of Crimes'},
+                            title='Count of Occurrences of Selected Crimes by Month')
+
+        # Update x-axis ticks to display month names instead of numbers
+        line_chart.update_xaxes(tickvals=list(month_dict.values()), ticktext=list(month_dict.keys()))
+
         # Display the line graph
         st.plotly_chart(line_chart)
